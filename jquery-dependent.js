@@ -9,6 +9,7 @@
  * bind a scroll-to-top animation to an element, on click
  * @param  {string} selector a selector that will be selected via jQuery
  * @param  {integer} interval a time interval in ms, it is 800 by default
+ * 
  */
 function bindScrollToTop(selector, interval) {
   $(selector).click(function (e) {
@@ -26,9 +27,7 @@ $.preloadImages = function () {
 $.preloadImages('img/hover-on.png', 'img/hover-off.png');
 
 // bind something to image loading
-// $('img').load(function () {
-//   console.log('image load successful');
-// });
+
 
 // Fix Broken Images Automatically
 $('img').on('error', function () {

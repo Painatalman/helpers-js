@@ -16,6 +16,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and follows Ol
 ### Added
 
 - Code optimization
+- UMD wrapper
+- gulpfile.js/webpack with code wrapper
 
 ## [2.1.0] - 2015-12-03
 ### Added

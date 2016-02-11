@@ -25,7 +25,7 @@ function toggleHover(selector, classOnHover) {
  * @param  {String} modalQuerySelector "A query selector for modals"
  */
 function moveModalsToBodyEnd(modalQuerySelector, modalQuerySelectorException) {
-  var 
+  var
     defaultSelector = modalQuerySelector || ".modal",
     selector = modalQuerySelectorException ?
       defaultSelector + ":not(" + modalQuerySelectorException + ")"
@@ -37,4 +37,50 @@ function moveModalsToBodyEnd(modalQuerySelector, modalQuerySelectorException) {
   );
 }
 
+/**
+ * addEventListener polyfill
+ * @param {element} node     element related to the listener
+ * @param {string} event    event type
+ * @param {function} listener the listener function
+ * @author React Starter Kit (https://www.reactstarterkit.com/)
+ */
+function addEventListener(node, event, listener) {
+  if (node.addEventListener) {
+    node.addEventListener(event, listener, false);
+  } else {
+    node.attachEvent('on' + event, listener);
+  }
+}
 
+/**
+ * removeEventListener polyfill
+ * @param  {element} node     element related to the listener
+ * @param  {string} event    event type
+ * @param  {function} listener the listener function
+ * @author React Starter Kit (https://www.reactstarterkit.com/)
+ */
+function removeEventListener(node, event, listener) {
+  if (node.removeEventListener) {
+    node.removeEventListener(event, listener, false);
+  } else {
+    node.detachEvent('on' + event, listener);
+  }
+}
+
+ /**
+  * Normalize a selector string, a single DOM element or an array of elements into an array of DOM elements.
+  * @author Whoever is in charge of the Transformicons Library
+  * @private
+  *
+  * @param {(string|element|array)} elements - Selector, DOM element or Array of DOM elements
+  * @returns {array} Array of DOM elements
+  */
+  var getElementList = function (elements) {
+    if (typeof elements === 'string') {
+      return Array.prototype.slice.call(document.querySelectorAll(elements));
+    } else if (typeof elements === 'undefined' || elements instanceof Array) {
+      return elements;
+    } else {
+      return [elements];
+    }
+  };

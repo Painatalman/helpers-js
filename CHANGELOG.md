@@ -66,8 +66,12 @@ Also, this changelog uses the standard from the [KeepChangeLog](http://keepachan
 - Commonjs folder, all helpers will eventually be wrapped in an UMD utility
 - main.js file
 
-## [0.0.1] - 201?
+## [0.0.0] - 201?
 ### Changed
 - Cannot remember.
 - Start following [SemVer](http://semver.org) properly.
 
+[Unreleased]: https://github.com/Painatalman/helpers-js/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/Painatalman/helpers-js/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/Painatalman/helpers-js/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/Painatalman/helpers-js/compare/107384488c2873aecf44b0801cf9a8edba0d0ef9...v0.1.0

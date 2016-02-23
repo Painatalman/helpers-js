@@ -8,6 +8,13 @@ Also, this changelog uses the standard from the [KeepChangeLog](http://keepachan
 
 - UMD support
 
+## [0.2.0] - *2016-02-23*
+
+### Added
+
+- WIP folder for ongoing projects with non-functional versions of ongoing projects
+- kCode plugin, among others...
+
 
 ## [0.1.0] - *2016-02-23*
 
@@ -20,11 +27,6 @@ Also, this changelog uses the standard from the [KeepChangeLog](http://keepachan
 ### Deprecated
 - commonjs folder and content (was changed to other places, and they are still there for legacy purposes
 
-## [0.1.0] - *201?-??-??*
-
-### Added
-
-- Templates
 
 
 

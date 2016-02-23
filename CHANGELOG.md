@@ -14,7 +14,16 @@ Also, this changelog uses the standard from the [KeepChangeLog](http://keepachan
 + Security
 
 ## [unreleased] - 201?-??-??
+
 ### Added
+
+- list folder for adding array polyfills and methods
+
+### Changed
+
+- normalized version numbers prior to [0.1.0](0.1.0)
+
+### Todo
 
 - Code optimization
 - UMD wrapper
@@ -48,10 +57,6 @@ Also, this changelog uses the standard from the [KeepChangeLog](http://keepachan
 ### Deprecated
 - commonjs folder and content (was changed to other places, and they are still there for legacy purposes
 
-## [0.0.9] - 2015-12-03
-### Added
-- This CHANGELOG file to hopefully serve as an evolving example of a standardized open source project CHANGELOG.
-
 ## [0.0.2] - 2016-02-11
 ### Added
 
@@ -65,6 +70,10 @@ Also, this changelog uses the standard from the [KeepChangeLog](http://keepachan
 ### Deprecated
 - Commonjs folder, all helpers will eventually be wrapped in an UMD utility
 - main.js file
+
+## [0.0.1] - *2015-12-03*
+### Added
+- This CHANGELOG file to hopefully serve as an evolving example of a standardized open source project CHANGELOG.
 
 ## [0.0.0] - 201?
 ### Changed

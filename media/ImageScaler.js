@@ -41,8 +41,8 @@ module.exports = function ImageScaler(optionsOrSelector) {
           }
         }
         else {
-          // either the height of the image is larger than the container the width smaller, or vice versa
-          if (containerHeight < imageHeight) {
+          // either the height of the image is larger than the container the width smaller, or vice versa. An image with smaller height must, then, be scaled accordingly
+          if (containerHeight > imageHeight) {
             attributeToBeChanged = "height";
             otherAttribute = "width";
           }

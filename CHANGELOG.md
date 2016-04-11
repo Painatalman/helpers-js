@@ -18,6 +18,8 @@ Also, this changelog uses the standard from the [KeepChangeLog](http://keepachan
 ### Added
 
 - list folder for adding array polyfills and methods
+- list method for finding the largest number (UNTESTED)
+- list method toArray for converting array-like objects into arrays (UNTESTED)
 
 ### Changed
 

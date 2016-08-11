@@ -7,7 +7,7 @@
         module.exports = factory();
     } else {
         // Browser globals (root is window)
-        root.returnExports = factory();
+        root.kCode = factory();
     }
 } (this, function() {
     /**

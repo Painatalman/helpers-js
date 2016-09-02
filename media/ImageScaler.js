@@ -30,6 +30,9 @@
             imageContainerSelector = undefined;
         }
 
+        // TODO: change this to 'closest' in the next version
+        var getClosestParent = require('../dom/closest-with-selector');
+
         function scaleImage(imageNode, imageContainer) {
 
             var
@@ -67,21 +70,23 @@
 
         return {
             scaleImages: function() {
-                var images = document.querySelectorAll(imageSelector);
-
                 for (var i = 0; i < images.length; i++) {
                     var image = images[i],
-                        imageContainer = image.parentNode;
+                        imageContainer;
 
-                    // TODO: find a parent node that will be considered a selector
                     if (imageContainerSelector) {
-                        // pass
+                        imageContainer = getClosestParent(image, imageContainerSelector) || image.parentNode;
+                    }
+                    else {
+                        imageContainer = image.parentNode;
                     }
 
                     scaleImage(image, imageContainer);
                 }
             },
             init: function() {
+                images = document.querySelectorAll(imageSelector);
+
                 this.scaleImages();
 
                 window.addEventListener('resize', this.scaleImages.bind(this));

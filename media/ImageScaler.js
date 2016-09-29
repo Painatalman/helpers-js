@@ -22,7 +22,7 @@
             // range is the minimum and maximum width that window must have in order to scale images
             // usually, this is undesired for mobile devices 
             range = {
-                min: 768, // it will only scale from 768px onwards, the "small" standard for bootstrap 3
+                min: undefined, // it will only scale from 768px onwards, the "small" standard for bootstrap 3
                 max: undefined 
             }
 

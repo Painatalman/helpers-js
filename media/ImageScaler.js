@@ -18,19 +18,34 @@
     function ImageScaler(optionsOrSelector) {
         var images,
             imageSelector,
-            imageContainerSelector
+            imageContainerSelector,
+            // range is the minimum and maximum width that window must have in order to scale images
+            // usually, this is undesired for mobile devices 
+            range = {
+                min: 768, // it will only scale from 768px onwards, the "small" standard for bootstrap 3
+                max: undefined 
+            }
 
         // options
         if (typeof optionsOrSelector === 'object') {
             imageSelector = optionsOrSelector.imageSelector || 'img';
             // for now, the containers will be the direct parents
             imageContainerSelector = optionsOrSelector.imageContainerSelector;
+            
+            // check if there is min range here
+            if (optionsOrSelector.range && optionsOrSelector.range.hasOwnProperty('min')) {
+                range.min = optionsOrSelector.range.min;
+            }
+            // same for max range
+            if (optionsOrSelector.range && optionsOrSelector.range.hasOwnProperty('max')) {
+                range.max = optionsOrSelector.range.max;
+            }
         } else {
+            // then the first parameter is an image selector... no other options available here
             imageSelector = optionsOrSelector || 'img';
             imageContainerSelector = undefined;
         }
 
-        // TODO: change this to 'closest' in the next version
         var getClosestParent = require('../dom/closest-with-selector');
 
         function scaleImage(imageNode, imageContainer) {
@@ -69,7 +84,26 @@
         }
 
         return {
+            checkIfScalable: function() {
+                var getWidth = require('../dom/get-width');
+                var bodyWidth = getWidth(document.body);
+
+                if (range.min && bodyWidth < range.min){
+                    return false;
+                }
+                else if (range.max && bodyWidth > range.max) {
+                    return false;
+                }
+
+                // else
+                return true; 
+            },
             scaleImages: function() {
+                // first of all, check if it is scalable
+                if (!this.checkIfScalable()) {
+                    return;
+                }
+
                 for (var i = 0; i < images.length; i++) {
                     var image = images[i],
                         imageContainer;

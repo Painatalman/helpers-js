@@ -1,5 +1,6 @@
 /**
  * Add an option to all select boxes based on a selector. 
+ * The options will have a value of "" by default, and their name will either be the select element's name or, if set, a data attribute called _data-label-name_
  * This was made in order to make up for when select boxes have no visible label linked to it
  *
  * @param      {Object}  arg1                     An Object expecting a selector, setAsSelected and defaultValue fields
@@ -16,11 +17,13 @@ module.exports = function addLabelAsOptionToSelects({selector='select', setAsSel
 		}
 
     let option = document.createElement('option');
+    let value = element.dataset.value || defaultValue;
+    let name = element.dataset.labelName || element.name;
     
     Object.assign(option, {
       selected: 'selected',
       value: defaultValue,
-      innerHTML: element.name
+      innerHTML: name
     });
 
     element.appendChild(option);

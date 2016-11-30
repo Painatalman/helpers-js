@@ -4,6 +4,6 @@
  * @todo TEST
  * @return {Boolean} True if it is a version of IE, according to User Agent. False otherwise
  */
-function isInternetExplorer() {
+module.exports = function isInternetExplorer() {
   return (navigator.userAgent.match(/msie/i))
 }

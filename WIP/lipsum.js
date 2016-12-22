@@ -1,4 +1,9 @@
-// criar uma funcao para garantir pops unicos de um array.
+// ## Instructions
+// - replace each text with the variables %variableType% with the proper values, at random. if it has an | followed by a number 1-9 or a single word, then, then it is supposed to have a filter.
+// ## Filters
+// |number from 1 to 9 - becomes a comma separated list
+// |capitalize - capitalize the first letter
+// |replacecommaswithspaces - capitalize the first letter
 
 var lIpsum = {
     generate_spiritualist: function generate_spiritualist(node, title_data, subtitle_data, text_data, guarantee_data, schedule_data, address_data, contact_data) {
@@ -97,8 +102,8 @@ var lIpsum = {
     },
     bootlegs: ['rookman'],
     spiritualists: {
-        "ranks": ['professor', 'mestre'],
-        "names": ['turé','bambo','iziaca','cadri','braima'],
+        "ranks": ['professor', 'mestre', 'doutor'],
+        "names": ['turé','bambo','iziaca','cadri','braima', 'koita'],
         "specialities": [
             'professor', 
             'espiritualista', 
@@ -108,6 +113,7 @@ var lIpsum = {
             'cientista',
             'especialista',
             'vidente',
+            'medium',
             'mágico africano'
         ],
         "problems": [
@@ -134,15 +140,24 @@ var lIpsum = {
             "união familiar",
             "vícios de alcoolismo e droga"
         ],
-        "text": [
-            "Grande espiritualista, ajuda a resolver qualquer que seja o seu caso, mesmo grave ou difícil solução, tal como: %specialities%, etc... é um dos melhores profissionais do País. O seu assunto estará resolvido muito rapidamente. Lê a sorte e faz trabalho à distância.",
-            "Dotado de conhecimentos e poderes, ajuda a resolver problemas em menos de 3 dias, difíceis ou graves, com eficácia e garantia, como: %specialities%, %specialities%, %specialities%, %specialities%, %specialities%, etc... Lê sorte, dá previsão de Vida, faz consulta à distância. Se quer prender a si uma vida nova, com segurança e pondo fim a tudo o que o/a preocupa. Contacte o %name% pois não deixe agravar os seus problemas nos casos acima mencionados.",
-            "Grande mestre das ciências ocultas, dotado de grandes poderes e conhecimentos científicos das ciências ocultas herdadas da família. %specialities%. O seu futuro depende da sua decisão de contactar o %title% e se quer uma solução honesta para os seus problemas, sejam grandes, graves ou antigos, contacte-o. Sigilo absoluto. Efectua trabalhos com %methods%. Faz trabalhos à distância. Consulta pessoalmente ou por cartas.",
-            "Experiência em todos os campos: %specialities%, %guarantees%. %problems%, %problems%. Conhecedor de todos os segredos e casos difíceis como: %problems%, %problems%, %problems%, %guarantees%, %guarantees%, %problems%, %guarantees%, %problems%, %problems%, %problems%, %problems%. %guarantees%. %timed_guarantees%. Se queres ter uma vida nova e deixar tudo o que te preocupa, fale com o %rank% %name%."
+        "services": [
+          "lê a sorte",
+          "faz trabalho à distância"
         ],
-        "presentation_text": [
+        "quotes": [
+          "Não existem problemas sem solução"
+        ]
+        "texts": [
+            "Grande espiritualista, ajuda a resolver qualquer que seja o seu caso, mesmo grave ou difícil solução, tal como: %specialities%*2, etc... é um dos melhores profissionais do País. O seu assunto estará resolvido muito rapidamente. %services%*2.",
+            "Dotado de conhecimentos e poderes, ajuda a resolver problemas em menos de 3 dias, difíceis ou graves, com eficácia e garantia, como: %specialities%, %specialities%, %specialities%, %specialities%, %specialities%, etc... %services%|3|capitalized. Se quer prender a si uma vida nova, com segurança e pondo fim a tudo o que o/a preocupa. Contacte o %name% pois não deixe agravar os seus problemas nos casos acima mencionados.",
+            "Grande mestre das ciências ocultas, dotado de grandes poderes e conhecimentos científicos das ciências ocultas herdadas da família. %specialities%. O seu futuro depende da sua decisão de contactar o %title% e se quer uma solução honesta para os seus problemas, sejam grandes, graves ou antigos, contacte-o. Sigilo absoluto. Efectua trabalhos com %methods%. Faz trabalhos à distância. Consulta pessoalmente ou por cartas.",
+            "Experiência em todos os campos: %specialities%, %guarantees%. %problems|2%. Conhecedor de todos os segredos e casos difíceis como: %problems%, %problems%, %problems%, %guarantees%, %guarantees%, %problems%, %guarantees%, %problems%, %problems%, %problems%, %problems%. %guarantees%. %timed_guarantees%. Se queres ter uma vida nova e deixar tudo o que te preocupa, fale com o %rank% %name%."
+        ],
+        "presentationTexts": [
             "Grande ilustre %specialities% %specialities% com %qualities%, %qualities%, %qualities%.",
-            "%specialities% - %specialities% - %specialities%"
+            "%specialities% - %specialities% - %specialities%",
+            "%specialities|2%",
+            "Grande %specialities|2|replacecommaswithspaces%"
         ],
         "methods": [
             "cadeado verde",
@@ -158,9 +173,10 @@ var lIpsum = {
         // basic structure for generating a full spiritualist card
         "templates": [
             ["title", "subtitle", "presentation_text", "text", "schedule_data", "contacts"],
-            ["subtitle", "title", "text", "schedule_data", "contacts"]
+            ["subtitle", "title", "text", "schedule_data", "contacts"],
+            ["quote", "subtitle", "title", "text", "guarantee", "schedule_data", "contacts", "address"],
         ],
-        "timed_guarantees": [
+        "timedGuarantees": [
             "ajuda a resolver problemas em menos de 3 dias",
             "resultados máximos em 7 dias",
             "resultado garantido a 100% em pouco tempo"
@@ -178,7 +194,9 @@ var lIpsum = {
             "2ª a sábado das 09h às 21h",
             'Consultas de Astrologia das 24h',
         ],
-        "address": ['Rua Coronel António dos Santos Fonseca, nº6, 3º Esq.º, Faro', 'Rua Dr. Coelho Carvalho, nº7 r/c, 8000 - FARO'], // will be deprecated by an address generator
+        "address": [
+          'Rua Coronel António dos Santos Fonseca, nº6, 3º Esq.º, Faro',
+          'Rua Dr. Coelho Carvalho, nº7 r/c, 8000 - FARO'], // will be deprecated by an address generator
         "contact":["999 999 999","222 222 222"], // will be deprecated by a number generator
         get_title: function() {
             // return a random rank and name and speciality in a format that is acceptable

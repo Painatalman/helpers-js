@@ -50,34 +50,31 @@
 
         function scaleImage(imageNode, imageContainer) {
 
+            if (!imageNode.naturalWidth) {
+              throw new Error('We do not believe this to be an image');
+            }
+
             var
                 imageWidth = imageNode.naturalWidth,
+              // same logic as before
                 imageHeight = imageNode.naturalHeight,
                 containerWidth = imageContainer.offsetWidth,
                 containerHeight = imageContainer.offsetHeight,
                 heightDiff = containerHeight / imageHeight,
                 widthDiff = containerWidth / imageWidth;
 
+
             var
             // let us suppose that it is the width that will be set to 100%
                 attributeToBeChanged = 'width',
                 otherAttribute = 'height';
 
-            if ((containerHeight > imageHeight && containerWidth > imageWidth) || (containerHeight < imageHeight && containerWidth < imageWidth)) {
-                if (heightDiff > widthDiff) {
-                    // then the height must be set to 100%
-                    attributeToBeChanged = 'height';
-                    otherAttribute = 'width';
-                }
-            } else {
-                // either the height of the image is larger than the container the width smaller, or vice versa. An image with smaller height must, then, be scaled accordingly
-                if (containerHeight > imageHeight) {
-                    attributeToBeChanged = 'height';
-                    otherAttribute = 'width';
-                }
+            // only change this ratio if there difference between the heights is larger than the one with the widths
+            if (heightDiff > widthDiff) {
+                // then the height must be set to 100%
+                attributeToBeChanged = 'height';
+                otherAttribute = 'width';
             }
-
-
 
             imageNode.style[attributeToBeChanged] = '100%';
             imageNode.style[otherAttribute] = 'auto';
@@ -99,32 +96,31 @@
                 return true; 
             },
             scaleImages: function() {
-                // first of all, check if it is scalable
-                if (!this.checkIfScalable()) {
-                    return;
+              // first of all, check if it is scalable
+              if (!this.checkIfScalable()) {
+                return;
+              }
+
+              for (var i = 0; i < images.length; i++) {
+                var image = images[i],
+                    imageContainer;
+
+                if (imageContainerSelector) {
+                    imageContainer = getClosestParent(image, imageContainerSelector) || image.parentNode;
+                }
+                else {
+                    imageContainer = image.parentNode;
                 }
 
-                for (var i = 0; i < images.length; i++) {
-                    var image = images[i],
-                        imageContainer;
-
-                    if (imageContainerSelector) {
-                        imageContainer = getClosestParent(image, imageContainerSelector) || image.parentNode;
-                    }
-                    else {
-                        imageContainer = image.parentNode;
-                    }
-
-                    scaleImage(image, imageContainer);
-                }
+                scaleImage(image, imageContainer);
+              }
             },
             init: function() {
-                images = document.querySelectorAll(imageSelector);
+              images = document.querySelectorAll(imageSelector);
 
-                this.scaleImages();
+              this.scaleImages();
 
-                window.addEventListener('resize', this.scaleImages.bind(this));
-
+              window.addEventListener('resize', this.scaleImages.bind(this));
             }
         }
     }

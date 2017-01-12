@@ -110,8 +110,8 @@
             var image = images[i];
             var imageContainer;
 
-            if (imageContainerSelector) {
-                imageContainer = getClosestParent(image, imageContainerSelector) || image.parentNode;
+            if (_imageContainerSelector) {
+                imageContainer = getClosestParent(image, _imageContainerSelector) || image.parentNode;
             }
             else {
                 imageContainer = image.parentNode;
@@ -126,7 +126,7 @@
           var imagesLength = images.length;
 
           // TODO: check if all images are OK
-          for (let imageIndex = 0; imageIndex < imagesLength; imagesLength++) {
+          for (let imageIndex = 0; imageIndex < imagesLength; imageIndex++) {
             var image = images[imageIndex];
             // check if image is complete or not
             if (!image.naturalWidth) {}

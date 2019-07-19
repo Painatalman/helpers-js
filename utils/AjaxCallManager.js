@@ -31,35 +31,35 @@
      		request: function (remoteUrl, {method = 'GET', asJson = false, successCallback, errorCallback}) {
      			// http://youmightnotneedjquery.com/
 
-				let request = new XMLHttpRequest();
-				request.open(method, remoteUrl, true);
+					let request = new XMLHttpRequest();
+					request.open(method, remoteUrl, true);
 
-				request.onreadystatechange = function requestCallback() {
-				  if (this.readyState === 4) {
-				    if (this.status >= 200 && this.status < 400) {
-				      // Success!
-				      let data = this.responseText;
+					request.onreadystatechange = function requestCallback() {
+						if (this.readyState === 4) {
+							if (this.status >= 200 && this.status < 400) {
+								// Success!
+								let data = this.responseText;
 
-				      if (asJson) {
-				      	data = JSON.parse(data);
-				      }
-				      if (successCallback) {
-				      	return successCallback(data);
-				      }
+								if (asJson) {
+									data = JSON.parse(data);
+								}
+								if (successCallback) {
+									return successCallback(data);
+								}
 
-				    } else {
-				      if (errorCallback) {
-				      	return errorCallback(data.responseText);
-				      }
-				      else {
-				      	throw new Error(this.responseText);
-				      }
-				    }
-				  }
-				};
+							} else {
+								if (errorCallback) {
+									return errorCallback(request);
+								}
+								else {
+									throw new Error(request.responseText);
+								}
+							}
+						}
+					};
 
-				request.send();
-				request = null;
+					request.send();
+					request = null;
 
      		}
      	}
